@@ -1,9 +1,9 @@
-Sub 数据汇总()
+Sub Import_Data_from_CSV_MDB()
 
 Application.ScreenUpdating = False
 target_win = ThisWorkbook.Name
 
-'————————————————原数据清空——————————————————————————————————————————————————————————————————————
+'————————————————Clear old data——————————————————————————————————————————————————————————————————————
 Sheet2.Activate
     Range("C2").Select
     Range(Selection, Selection.End(xlToRight)).Select
@@ -24,8 +24,8 @@ Sheet4.Activate
 
 Sheet1.Activate
     
-'————————————————导入CSV数据——————————————————————————————————————————————————————————————————————
-MsgBox ("M_Net文件")
+'————————————————improt CSV date——————————————————————————————————————————————————————————————————————
+MsgBox ("M_Net File")
 
 
 csvPath = Application.GetOpenFilename()
@@ -45,12 +45,12 @@ Sheet2.Activate
     Sheet2.Name = csvSheetName
 Windows(csvName).Close
 
-'————————————————导入CAV数据——————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-MsgBox ("CAV文件")
+'————————————————import CAV data——————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+MsgBox ("CAV File")
 cavPath = Application.GetOpenFilename()
 cavName = Right(cavPath, 24)
 cavSheetName = Left(cavName, 20)
-listName = "表_" + cavSheetName
+listName = "List_" + cavSheetName
 
 Sheet4.Activate
 With ActiveSheet.ListObjects.Add(SourceType:=0, Source:=Array( _
@@ -84,7 +84,7 @@ With ActiveSheet.ListObjects.Add(SourceType:=0, Source:=Array( _
     End With
 Sheet4.ListObjects(1).unlist
 
-'复制粘贴
+'copy and paste
 Sheet4.Activate
     Range("D2").Select
     Range(Selection, Selection.End(xlToRight)).Select
